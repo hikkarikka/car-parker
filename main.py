@@ -25,7 +25,7 @@ class ParkingLot:
         if vehicle.vehicle_type == "Car":
             if self.free_carspots > 0:
                 self.free_carspots -= 1
-                self.park_vehicle.append((vehicle, "car"))
+                self.parked_vehicles.append((vehicle, "car"))
                 return f"машина с номером {vehicle.license_plate} успешно припаркована"
             else:
                 return f"на парковке нет мест"
@@ -36,7 +36,7 @@ class ParkingLot:
                 return f"мотоцикл с номером {vehicle.license_plate} успешно припаркован на место мотоцикла"
             elif self.free_carspots > 0:
                 self.free_carspots -= 1
-                self.parked_vehicles.append(vehicle, "car")
+                self.parked_vehicles.append((vehicle, "car"))
                 return f"мотоцикл с номером {vehicle.license_plate} успешно припаркован на место машины"
             else:
                 return f"нет свободных мест для машин и мотоциклов"
@@ -51,7 +51,23 @@ class ParkingLot:
                     self.free_motorcyclespots += 1
                 self.parked_vehicles.pop(i)
                 return f"транспорт с номером {license_plate} был удален"
-            else:
-                return "транспорт не найден"
+        return "транспорт не найден"
             
-    
+    def get_parked_vehicles(self):
+        if not self.parked_vehicles:
+            return "парковка пустая"
+        spot =[]
+        for vehicle, spot_type in self.parked_vehicles:
+            spot.append(f"тип: {vehicle.vehicle_type}, номер: {vehicle.license_plate}, место: {spot_type}")
+        return "\n".join(spot)
+
+
+def main():
+    parking = ParkingLot(5,7)
+    vehicles = [Car("123aaa"), Car("456vvv"), Car("789ccc"), Car("321ddd"), Motorcycle("1209"), Motorcycle("3487"), Motorcycle("5676")]
+    for vehicle in vehicles:
+        print(parking.park_vehicle(vehicle))
+    print(parking.get_parked_vehicles())
+
+if __name__ == "___main___":
+    main()
