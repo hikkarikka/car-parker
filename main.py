@@ -63,11 +63,12 @@ class ParkingLot:
 
 
 def main():
-    parking = ParkingLot(5,7)
-    vehicles = [Car("123aaa"), Car("456vvv"), Car("789ccc"), Car("321ddd"), Motorcycle("1209"), Motorcycle("3487"), Motorcycle("5676")]
+    parking = ParkingLot(4,3)
+    vehicles = [Car("123aaa"), Car("789ccc"), Car("321ddd"), Motorcycle("1209"), Motorcycle("3487"), Motorcycle("5676"), Motorcycle("1256")]
     for vehicle in vehicles:
         print(parking.park_vehicle(vehicle))
     print(parking.get_parked_vehicles())
+    
 
-if __name__ == "___main___":
+if __name__ == "__main__":
     main()
